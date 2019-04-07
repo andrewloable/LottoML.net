@@ -1,6 +1,7 @@
 ﻿using Microsoft.ML.Data;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -56,5 +57,13 @@ namespace LottoML
     {
         [ColumnName("PredictedLabel")]
         public float predictedresult;
+    }
+
+    public class LottoWorker
+    {
+        public BackgroundWorker Worker { get; set; }
+        public int Slot { get; set; }
+        public string Filename { get; set; }
+        public TransformerChain<Microsoft.ML.Transforms.KeyToValueMappingTransformer> Model { get; set; }
     }
 }

@@ -84,7 +84,6 @@ D:\Projects\dotnet\LottoML.net\LottoML\LottoML\bin\Debug\System.Memory.xml
 D:\Projects\dotnet\LottoML.net\LottoML\LottoML\bin\Debug\System.Numerics.Vectors.xml
 D:\Projects\dotnet\LottoML.net\LottoML\LottoML\bin\Debug\System.Runtime.CompilerServices.Unsafe.xml
 D:\Projects\dotnet\LottoML.net\LottoML\LottoML\bin\Debug\System.Threading.Tasks.Dataflow.xml
-D:\Projects\dotnet\LottoML.net\LottoML\LottoML\obj\Debug\LottoML.csprojAssemblyReference.cache
 D:\Projects\dotnet\LottoML.net\LottoML\LottoML\obj\Debug\LottoML.Form1.resources
 D:\Projects\dotnet\LottoML.net\LottoML\LottoML\obj\Debug\LottoML.Properties.Resources.resources
 D:\Projects\dotnet\LottoML.net\LottoML\LottoML\obj\Debug\LottoML.csproj.GenerateResource.cache

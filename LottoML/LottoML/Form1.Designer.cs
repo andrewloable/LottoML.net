@@ -35,14 +35,8 @@
             this.btnBrowseCSV = new MaterialSkin.Controls.MaterialFlatButton();
             this.txtCSV = new MaterialSkin.Controls.MaterialSingleLineTextField();
             this.materialLabel1 = new MaterialSkin.Controls.MaterialLabel();
-            this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.btnPredict = new MaterialSkin.Controls.MaterialRaisedButton();
-            this.btnBrowseModel = new MaterialSkin.Controls.MaterialFlatButton();
-            this.txtModel = new MaterialSkin.Controls.MaterialSingleLineTextField();
-            this.materialLabel2 = new MaterialSkin.Controls.MaterialLabel();
             this.txtLogs = new System.Windows.Forms.TextBox();
             this.groupBox1.SuspendLayout();
-            this.groupBox2.SuspendLayout();
             this.SuspendLayout();
             // 
             // groupBox1
@@ -88,9 +82,9 @@
             this.btnGenerateModel.MouseState = MaterialSkin.MouseState.HOVER;
             this.btnGenerateModel.Name = "btnGenerateModel";
             this.btnGenerateModel.Primary = true;
-            this.btnGenerateModel.Size = new System.Drawing.Size(138, 36);
+            this.btnGenerateModel.Size = new System.Drawing.Size(145, 36);
             this.btnGenerateModel.TabIndex = 4;
-            this.btnGenerateModel.Text = "Generate Model";
+            this.btnGenerateModel.Text = "Start Prediction";
             this.btnGenerateModel.UseVisualStyleBackColor = true;
             this.btnGenerateModel.Click += new System.EventHandler(this.BtnGenerateModel_Click);
             // 
@@ -163,97 +157,18 @@
             this.materialLabel1.TabIndex = 0;
             this.materialLabel1.Text = "CSV Input :";
             // 
-            // groupBox2
-            // 
-            this.groupBox2.Controls.Add(this.btnPredict);
-            this.groupBox2.Controls.Add(this.btnBrowseModel);
-            this.groupBox2.Controls.Add(this.txtModel);
-            this.groupBox2.Controls.Add(this.materialLabel2);
-            this.groupBox2.Location = new System.Drawing.Point(12, 172);
-            this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(776, 103);
-            this.groupBox2.TabIndex = 1;
-            this.groupBox2.TabStop = false;
-            this.groupBox2.Text = "Step 2";
-            // 
-            // btnPredict
-            // 
-            this.btnPredict.AutoSize = true;
-            this.btnPredict.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.btnPredict.Depth = 0;
-            this.btnPredict.Icon = null;
-            this.btnPredict.Location = new System.Drawing.Point(108, 54);
-            this.btnPredict.MouseState = MaterialSkin.MouseState.HOVER;
-            this.btnPredict.Name = "btnPredict";
-            this.btnPredict.Primary = true;
-            this.btnPredict.Size = new System.Drawing.Size(171, 36);
-            this.btnPredict.TabIndex = 6;
-            this.btnPredict.Text = "Generate Prediction";
-            this.btnPredict.UseVisualStyleBackColor = true;
-            this.btnPredict.Click += new System.EventHandler(this.BtnPredict_Click);
-            // 
-            // btnBrowseModel
-            // 
-            this.btnBrowseModel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnBrowseModel.AutoSize = true;
-            this.btnBrowseModel.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.btnBrowseModel.Depth = 0;
-            this.btnBrowseModel.Icon = null;
-            this.btnBrowseModel.Location = new System.Drawing.Point(693, 17);
-            this.btnBrowseModel.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
-            this.btnBrowseModel.MouseState = MaterialSkin.MouseState.HOVER;
-            this.btnBrowseModel.Name = "btnBrowseModel";
-            this.btnBrowseModel.Primary = false;
-            this.btnBrowseModel.Size = new System.Drawing.Size(76, 36);
-            this.btnBrowseModel.TabIndex = 5;
-            this.btnBrowseModel.Text = "Browse";
-            this.btnBrowseModel.UseVisualStyleBackColor = true;
-            this.btnBrowseModel.Click += new System.EventHandler(this.BtnBrowseModel_Click);
-            // 
-            // txtModel
-            // 
-            this.txtModel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtModel.Depth = 0;
-            this.txtModel.Hint = "";
-            this.txtModel.Location = new System.Drawing.Point(108, 25);
-            this.txtModel.MaxLength = 32767;
-            this.txtModel.MouseState = MaterialSkin.MouseState.HOVER;
-            this.txtModel.Name = "txtModel";
-            this.txtModel.PasswordChar = '\0';
-            this.txtModel.SelectedText = "";
-            this.txtModel.SelectionLength = 0;
-            this.txtModel.SelectionStart = 0;
-            this.txtModel.Size = new System.Drawing.Size(578, 23);
-            this.txtModel.TabIndex = 4;
-            this.txtModel.TabStop = false;
-            this.txtModel.UseSystemPasswordChar = false;
-            // 
-            // materialLabel2
-            // 
-            this.materialLabel2.AutoSize = true;
-            this.materialLabel2.Depth = 0;
-            this.materialLabel2.Font = new System.Drawing.Font("Roboto", 11F);
-            this.materialLabel2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.materialLabel2.Location = new System.Drawing.Point(6, 25);
-            this.materialLabel2.MouseState = MaterialSkin.MouseState.HOVER;
-            this.materialLabel2.Name = "materialLabel2";
-            this.materialLabel2.Size = new System.Drawing.Size(96, 19);
-            this.materialLabel2.TabIndex = 3;
-            this.materialLabel2.Text = "Model Input :";
-            // 
             // txtLogs
             // 
             this.txtLogs.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.txtLogs.BackColor = System.Drawing.Color.White;
-            this.txtLogs.Location = new System.Drawing.Point(12, 281);
+            this.txtLogs.Location = new System.Drawing.Point(12, 172);
             this.txtLogs.Multiline = true;
             this.txtLogs.Name = "txtLogs";
             this.txtLogs.ReadOnly = true;
             this.txtLogs.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-            this.txtLogs.Size = new System.Drawing.Size(776, 229);
+            this.txtLogs.Size = new System.Drawing.Size(776, 338);
             this.txtLogs.TabIndex = 2;
             // 
             // Form1
@@ -262,14 +177,11 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 522);
             this.Controls.Add(this.txtLogs);
-            this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
             this.Name = "Form1";
             this.Text = "Lotto ML";
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
-            this.groupBox2.ResumeLayout(false);
-            this.groupBox2.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -283,11 +195,6 @@
         private MaterialSkin.Controls.MaterialSingleLineTextField txtCSV;
         private MaterialSkin.Controls.MaterialLabel materialLabel1;
         private MaterialSkin.Controls.MaterialRaisedButton btnGenerateModel;
-        private System.Windows.Forms.GroupBox groupBox2;
-        private MaterialSkin.Controls.MaterialFlatButton btnBrowseModel;
-        private MaterialSkin.Controls.MaterialSingleLineTextField txtModel;
-        private MaterialSkin.Controls.MaterialLabel materialLabel2;
-        private MaterialSkin.Controls.MaterialRaisedButton btnPredict;
         private System.Windows.Forms.TextBox txtLogs;
         private MaterialSkin.Controls.MaterialCheckBox chkHeader;
     }

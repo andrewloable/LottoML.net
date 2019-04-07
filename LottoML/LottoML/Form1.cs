@@ -10,6 +10,7 @@ using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -18,6 +19,7 @@ namespace LottoML
     public partial class Form1 : MaterialForm
     {
         private List<List<float>> data = new List<List<float>>();
+        List<string> predictedResult;
 
         public Form1()
         {
@@ -46,16 +48,17 @@ namespace LottoML
             txtLogs.AppendText(DateTime.Now.ToString() + " : " + message + Environment.NewLine);
         }
 
-        private string GenerateCSVForTraining(List<List<float>> input)
+        private string[] GenerateCSVForTraining(List<List<float>> input)
         {
-            string fn = Path.GetTempFileName();
-
-            StringBuilder sb = new StringBuilder();
-            sb.Append("prev1,prev2,prev3,prev4,prev5,prev6,prev7,prev8,prev9,result").Append(Environment.NewLine);
-
+            List<string> retval = new List<string>();
             int slots = input[0].Count;
             for(int j=0; j<slots; j++)
             {
+                string fn = Path.GetTempFileName();
+
+                StringBuilder sb = new StringBuilder();
+                sb.Append("prev1,prev2,prev3,prev4,prev5,prev6,prev7,prev8,prev9,result").Append(Environment.NewLine);
+
                 for (int i = 9; i < input.Count; i++)
                 {
                     sb.Append(input[i - 9][j]).Append(",");
@@ -69,11 +72,11 @@ namespace LottoML
                     sb.Append(input[i - 1][j]).Append(",");
                     sb.Append(input[i - 9][j]).Append(Environment.NewLine);
                 }
-            }
+                File.WriteAllText(fn, sb.ToString());
+                retval.Add(fn);
+            }            
 
-            File.WriteAllText(fn, sb.ToString());
-
-            return fn;
+            return retval.ToArray();
         }
 
         private void BtnBrowseCSV_Click(object sender, EventArgs e)
@@ -122,15 +125,49 @@ namespace LottoML
         {
             if (data != null && data.Count > 0)
             {
-                BackgroundWorker bw = new BackgroundWorker();
-                bw.WorkerReportsProgress = true;
-                bw.DoWork += Bw_DoWork;                        
-                bw.ProgressChanged += Bw_ProgressChanged;
-                bw.RunWorkerCompleted += Bw_RunWorkerCompleted;
+                groupBox1.Enabled = false;
+                predictedResult = new List<string>();
+                List<LottoWorker> workers = new List<LottoWorker>();
+                var fn = GenerateCSVForTraining(data);
 
-                groupBox1.Enabled = groupBox2.Enabled = false;
-                bw.RunWorkerAsync();
+                for (int i=0; i<fn.Length; i++)
+                {
+                    string f = fn[i];                    
 
+                    BackgroundWorker bw = new BackgroundWorker();
+                    bw.WorkerReportsProgress = true;
+                    bw.DoWork += Bw_DoWork;
+                    bw.ProgressChanged += Bw_ProgressChanged;
+                    bw.RunWorkerCompleted += Bw_RunWorkerCompleted;
+
+                    LottoWorker lw = new LottoWorker();
+                    lw.Worker = bw;
+                    lw.Filename = f;
+                    lw.Slot = i + 1;
+                    workers.Add(lw);
+
+                    lw.Worker.RunWorkerAsync(lw);
+                }
+
+                while (true)
+                {
+                RESTART:
+                    Thread.Sleep(2000);
+                    Application.DoEvents();
+                    foreach (var lw in workers)
+                    {
+                        if (lw.Worker.IsBusy)
+                        {
+                            goto RESTART;
+                        }
+                    }
+                    break;
+                }
+
+                string res = "PREDICTED RESULTS : " + String.Join(" - ", predictedResult.ToArray());
+                log(res);
+                MessageBox.Show(res, "Result", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                groupBox1.Enabled = true;
             } else
             {
                 MessageBox.Show("Please load a dataset via CSV.", "No Data Available", MessageBoxButtons.OK, MessageBoxIcon.Stop);
@@ -139,37 +176,37 @@ namespace LottoML
 
         private void Bw_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
-            TransformerChain<Microsoft.ML.Transforms.KeyToValueMappingTransformer> model = (TransformerChain<Microsoft.ML.Transforms.KeyToValueMappingTransformer>)e.Result;
-            BackgroundWorker bw = (BackgroundWorker)sender;
-
-            SaveFileDialog sfd = new SaveFileDialog();
-            sfd.Filter = "ML Model|*.ai";
-            if (sfd.ShowDialog() == DialogResult.OK)
+            LottoWorker lw = (LottoWorker)e.Result;
+            var loadedModel = lw.Model;
+            var mlContext = new MLContext();
+            int lastRecord = data.Count - 1;
+            var predictionEngine = mlContext.Model.CreatePredictionEngine<LottoData, LottoDataPrediction>(loadedModel);
+            var lt = new LottoData()
             {
-                if (File.Exists(sfd.FileName))
-                {
-                    File.Delete(sfd.FileName);
-                }
-
-                using (var fileStream = new FileStream(sfd.FileName, FileMode.Create, FileAccess.Write, FileShare.Write))
-                {
-                    MLContext mlContext = new MLContext();
-                    log("Saving Training Data");
-                    mlContext.Model.Save(model, null, fileStream);
-                }
-                txtModel.Text = sfd.FileName;
-                MessageBox.Show("Training Data Generated", "Training Complete", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                groupBox1.Enabled = groupBox2.Enabled = true;
+                prev1 = data[lastRecord - 8][lw.Slot-1],
+                prev2 = data[lastRecord - 7][lw.Slot - 1],
+                prev3 = data[lastRecord - 6][lw.Slot - 1],
+                prev4 = data[lastRecord - 5][lw.Slot - 1],
+                prev5 = data[lastRecord - 4][lw.Slot - 1],
+                prev6 = data[lastRecord - 3][lw.Slot - 1],
+                prev7 = data[lastRecord - 2][lw.Slot - 1],
+                prev8 = data[lastRecord - 1][lw.Slot - 1],
+                prev9 = data[lastRecord][lw.Slot - 1]
+            };
+            var predict = predictionEngine.Predict(lt);
+            log("PREDICTED SLOT [" + lw.Slot + "] - " + predict.predictedresult.ToString());
+            predictedResult.Add(predict.predictedresult.ToString());
+            if (File.Exists(lw.Filename))
+            {
+                File.Delete(lw.Filename);
             }
         }
 
         private void Bw_DoWork(object sender, DoWorkEventArgs e)
         {
-            BackgroundWorker bw = (BackgroundWorker)sender;
-            bw.ReportProgress(0, "Generate CSV for Training");
-            var fn = GenerateCSVForTraining(data);
+            LottoWorker lw = (LottoWorker)e.Argument;
 
-            bw.ReportProgress(0, "Reading Training Data");
+            lw.Worker.ReportProgress(0, "SLOT [" + lw.Slot + "] - Reading Training Data");
             var mlContext = new MLContext();
             var loader = mlContext.Data.CreateTextLoader(new[]
             {
@@ -185,76 +222,20 @@ namespace LottoML
                 new TextLoader.Column("result", DataKind.Single, 9),
             }, hasHeader: true, separatorChar: ',');
 
-            var trainingData = loader.Load(fn);
+            var trainingData = loader.Load(lw.Filename);
             var learningPipeline = mlContext.Transforms.Conversion.MapValueToKey("result")
                 .Append(mlContext.Transforms.Concatenate("Features", "prev1", "prev2", "prev3", "prev4", "prev5", "prev6", "prev7", "prev8", "prev9"))
-                .Append(mlContext.MulticlassClassification.Trainers.SdcaMaximumEntropy(labelColumnName: "result", featureColumnName: "Features"))
+                .Append(mlContext.MulticlassClassification.Trainers.SdcaNonCalibrated(labelColumnName: "result", featureColumnName: "Features"))
                 .Append(mlContext.Transforms.Conversion.MapKeyToValue("PredictedLabel"));
 
-            bw.ReportProgress(0, "Training Data. This may take a lot of time...");
-            TransformerChain<Microsoft.ML.Transforms.KeyToValueMappingTransformer> model = learningPipeline.Fit(trainingData);
-
-            e.Result = model;
+            lw.Worker.ReportProgress(0, "SLOT [" + lw.Slot + "] - Training Data. This may take a lot of time...");
+            lw.Model = learningPipeline.Fit(trainingData);
+            e.Result = lw;
         }
 
         private void Bw_ProgressChanged(object sender, ProgressChangedEventArgs e)
         {
             log(e.UserState.ToString());
-        }
-
-        private void BtnPredict_Click(object sender, EventArgs e)
-        {
-            groupBox1.Enabled = groupBox2.Enabled = false;
-            var mlContext = new MLContext();
-            ITransformer loadedModel;
-            using (var fileStream = new FileStream(txtModel.Text, FileMode.Open, FileAccess.Read, FileShare.Read))
-            {                
-                DataViewSchema dvs;
-                loadedModel = mlContext.Model.Load(fileStream, out dvs);
-            }
-
-            List<string> predictedResult = new List<string>();
-            if (data != null && data.Count > 0)
-            {
-                int slots = data[0].Count;
-                for (int j = 0; j < slots; j++)
-                {
-                    int lastRecord = data.Count - 1;
-                    var predictionEngine = mlContext.Model.CreatePredictionEngine<LottoData, LottoDataPrediction>(loadedModel);
-                    var predict = predictionEngine.Predict(
-                        new LottoData()
-                        {
-                            prev1 = data[lastRecord - 8][j],
-                            prev2 = data[lastRecord - 7][j],
-                            prev3 = data[lastRecord - 6][j],
-                            prev4 = data[lastRecord - 5][j],
-                            prev5 = data[lastRecord - 4][j],
-                            prev6 = data[lastRecord - 3][j],
-                            prev7 = data[lastRecord - 2][j],
-                            prev8 = data[lastRecord - 1][j],
-                            prev9 = data[lastRecord][j]
-                        }
-                        );
-                    predictedResult.Add(predict.predictedresult.ToString());
-                }
-
-                string res = "PREDICTED RESULTS : " + String.Join(" - ", predictedResult.ToArray());
-                log(res);
-                MessageBox.Show(res, "Result", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            }
-            groupBox1.Enabled = groupBox2.Enabled = true;
-        }
-
-        private void BtnBrowseModel_Click(object sender, EventArgs e)
-        {
-            OpenFileDialog opf = new OpenFileDialog();
-            opf.Filter = "ML Model|*.ai";
-            opf.Multiselect = false;
-            if (opf.ShowDialog() == DialogResult.OK)
-            {
-                txtModel.Text = opf.FileName;
-                MessageBox.Show("Data Loaded. Press Generate Model To Start the Training", "Data Loaded", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            }
         }
     }
 }
