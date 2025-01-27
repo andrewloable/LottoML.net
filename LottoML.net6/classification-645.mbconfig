@@ -1,0 +1,340 @@
+﻿{
+  "Scenario": "Classification",
+  "DataSource": {
+    "Type": "TabularFile",
+    "Version": 1,
+    "FilePath": "G:\\projects\\loabletech\\LottoML.net\\LottoML.net6\\PCSO Lotto - 645.csv",
+    "Delimiter": ",",
+    "DecimalMarker": ".",
+    "HasHeader": true,
+    "ColumnProperties": [
+      {
+        "ColumnName": "slot1",
+        "ColumnPurpose": "Feature",
+        "ColumnDataFormat": "Single",
+        "IsCategorical": false,
+        "Type": "Column",
+        "Version": 4
+      },
+      {
+        "ColumnName": "slot2",
+        "ColumnPurpose": "Feature",
+        "ColumnDataFormat": "Single",
+        "IsCategorical": false,
+        "Type": "Column",
+        "Version": 4
+      },
+      {
+        "ColumnName": "slot3",
+        "ColumnPurpose": "Feature",
+        "ColumnDataFormat": "Single",
+        "IsCategorical": false,
+        "Type": "Column",
+        "Version": 4
+      },
+      {
+        "ColumnName": "slot4",
+        "ColumnPurpose": "Feature",
+        "ColumnDataFormat": "Single",
+        "IsCategorical": false,
+        "Type": "Column",
+        "Version": 4
+      },
+      {
+        "ColumnName": "slot5",
+        "ColumnPurpose": "Feature",
+        "ColumnDataFormat": "Single",
+        "IsCategorical": false,
+        "Type": "Column",
+        "Version": 4
+      },
+      {
+        "ColumnName": "slot6",
+        "ColumnPurpose": "Feature",
+        "ColumnDataFormat": "Single",
+        "IsCategorical": false,
+        "Type": "Column",
+        "Version": 4
+      },
+      {
+        "ColumnName": "haswinner",
+        "ColumnPurpose": "Label",
+        "ColumnDataFormat": "Boolean",
+        "IsCategorical": true,
+        "Type": "Column",
+        "Version": 4
+      }
+    ]
+  },
+  "Environment": {
+    "Type": "LocalCPU",
+    "Version": 1
+  },
+  "RunHistory": {
+    "Version": 3,
+    "Type": "Result",
+    "Trials": [
+      {
+        "Version": 1,
+        "Type": "Trial",
+        "TrainerName": "SdcaLogisticRegressionBinary",
+        "Score": 0.91648722008914252,
+        "RuntimeInSeconds": 0.539,
+        "Parameter": {
+          "_SCHEMA_": "e0 * e1 * e5",
+          "e0": {
+            "OutputColumnNames": [
+              "slot1",
+              "slot2",
+              "slot3",
+              "slot4",
+              "slot5",
+              "slot6"
+            ],
+            "InputColumnNames": [
+              "slot1",
+              "slot2",
+              "slot3",
+              "slot4",
+              "slot5",
+              "slot6"
+            ]
+          },
+          "e1": {
+            "InputColumnNames": [
+              "slot1",
+              "slot2",
+              "slot3",
+              "slot4",
+              "slot5",
+              "slot6"
+            ],
+            "OutputColumnName": "Features"
+          },
+          "e5": {
+            "L1Regularization": 1.0,
+            "L2Regularization": 0.1,
+            "LabelColumnName": "haswinner",
+            "FeatureColumnName": "Features"
+          }
+        }
+      },
+      {
+        "Version": 1,
+        "Type": "Trial",
+        "TrainerName": "LbfgsLogisticRegressionBinary",
+        "Score": 0.91648722008914252,
+        "RuntimeInSeconds": 0.105,
+        "Parameter": {
+          "_SCHEMA_": "e0 * e1 * e4",
+          "e0": {
+            "OutputColumnNames": [
+              "slot1",
+              "slot2",
+              "slot3",
+              "slot4",
+              "slot5",
+              "slot6"
+            ],
+            "InputColumnNames": [
+              "slot1",
+              "slot2",
+              "slot3",
+              "slot4",
+              "slot5",
+              "slot6"
+            ]
+          },
+          "e1": {
+            "InputColumnNames": [
+              "slot1",
+              "slot2",
+              "slot3",
+              "slot4",
+              "slot5",
+              "slot6"
+            ],
+            "OutputColumnName": "Features"
+          },
+          "e4": {
+            "L1Regularization": 1.0,
+            "L2Regularization": 1.0,
+            "LabelColumnName": "haswinner",
+            "FeatureColumnName": "Features"
+          }
+        }
+      },
+      {
+        "Version": 1,
+        "Type": "Trial",
+        "TrainerName": "LbfgsLogisticRegressionBinary",
+        "Score": 0.91648722008914252,
+        "RuntimeInSeconds": 0.045,
+        "Parameter": {
+          "_SCHEMA_": "e0 * e1 * e4",
+          "e0": {
+            "OutputColumnNames": [
+              "slot1",
+              "slot2",
+              "slot3",
+              "slot4",
+              "slot5",
+              "slot6"
+            ],
+            "InputColumnNames": [
+              "slot1",
+              "slot2",
+              "slot3",
+              "slot4",
+              "slot5",
+              "slot6"
+            ]
+          },
+          "e1": {
+            "InputColumnNames": [
+              "slot1",
+              "slot2",
+              "slot3",
+              "slot4",
+              "slot5",
+              "slot6"
+            ],
+            "OutputColumnName": "Features"
+          },
+          "e4": {
+            "L1Regularization": 0.369528055,
+            "L2Regularization": 0.381079972,
+            "LabelColumnName": "haswinner",
+            "FeatureColumnName": "Features"
+          }
+        }
+      },
+      {
+        "Version": 1,
+        "Type": "Trial",
+        "TrainerName": "SdcaLogisticRegressionBinary",
+        "Score": 0.91648722008914252,
+        "RuntimeInSeconds": 1.143,
+        "Parameter": {
+          "_SCHEMA_": "e0 * e1 * e5",
+          "e0": {
+            "OutputColumnNames": [
+              "slot1",
+              "slot2",
+              "slot3",
+              "slot4",
+              "slot5",
+              "slot6"
+            ],
+            "InputColumnNames": [
+              "slot1",
+              "slot2",
+              "slot3",
+              "slot4",
+              "slot5",
+              "slot6"
+            ]
+          },
+          "e1": {
+            "InputColumnNames": [
+              "slot1",
+              "slot2",
+              "slot3",
+              "slot4",
+              "slot5",
+              "slot6"
+            ],
+            "OutputColumnName": "Features"
+          },
+          "e5": {
+            "L1Regularization": 0.369528055,
+            "L2Regularization": 0.038108,
+            "LabelColumnName": "haswinner",
+            "FeatureColumnName": "Features"
+          }
+        }
+      },
+      {
+        "Version": 1,
+        "Type": "Trial",
+        "TrainerName": "LbfgsLogisticRegressionBinary",
+        "Score": 0.91648722008914252,
+        "RuntimeInSeconds": 0.055,
+        "Parameter": {
+          "_SCHEMA_": "e0 * e1 * e4",
+          "e0": {
+            "OutputColumnNames": [
+              "slot1",
+              "slot2",
+              "slot3",
+              "slot4",
+              "slot5",
+              "slot6"
+            ],
+            "InputColumnNames": [
+              "slot1",
+              "slot2",
+              "slot3",
+              "slot4",
+              "slot5",
+              "slot6"
+            ]
+          },
+          "e1": {
+            "InputColumnNames": [
+              "slot1",
+              "slot2",
+              "slot3",
+              "slot4",
+              "slot5",
+              "slot6"
+            ],
+            "OutputColumnName": "Features"
+          },
+          "e4": {
+            "L1Regularization": 2.70615435,
+            "L2Regularization": 2.624121,
+            "LabelColumnName": "haswinner",
+            "FeatureColumnName": "Features"
+          }
+        }
+      }
+    ],
+    "Estimators": {
+      "e0": "ReplaceMissingValues",
+      "e1": "Concatenate",
+      "e2": "FastTreeBinary",
+      "e3": "LightGbmBinary",
+      "e4": "LbfgsLogisticRegressionBinary",
+      "e5": "SdcaLogisticRegressionBinary",
+      "e6": "FastForestBinary",
+      "e7": "Naive"
+    },
+    "Schema": "e0 * e1 * (e2 + e3 + e4 + e5 + e6 * e7)",
+    "MetricName": "Accuracy",
+    "ModelFilePath": "G:\\projects\\loabletech\\LottoML.net\\LottoML.net6\\classification-645.mlnet"
+  },
+  "Type": "TrainingConfig",
+  "Version": 4,
+  "TrainingOption": {
+    "Version": 2,
+    "Subsampling": false,
+    "Type": "ClassificationTrainingOption",
+    "TrainingTime": 10,
+    "OptimizeMetric": "Accuracy",
+    "LabelColumn": "haswinner",
+    "AvailableTrainers": [
+      "SDCA",
+      "LBFGS",
+      "LGBM",
+      "FASTTREE",
+      "FASTFOREST"
+    ],
+    "Seed": 0,
+    "ValidationOption": {
+      "Version": 0,
+      "Type": "CrossValidationValidationOption",
+      "NumberOfFolds": 5
+    }
+  }
+}

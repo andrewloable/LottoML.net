@@ -1,0 +1,415 @@
+﻿{
+  "Scenario": "Classification",
+  "DataSource": {
+    "Type": "TabularFile",
+    "Version": 1,
+    "FilePath": "G:\\projects\\loabletech\\LottoML.net\\LottoML.net6\\PCSO Lotto - 645.csv",
+    "Delimiter": ",",
+    "DecimalMarker": ".",
+    "HasHeader": true,
+    "ColumnProperties": [
+      {
+        "ColumnName": "slot1",
+        "ColumnPurpose": "Feature",
+        "ColumnDataFormat": "Single",
+        "IsCategorical": false,
+        "Type": "Column",
+        "Version": 4
+      },
+      {
+        "ColumnName": "slot2",
+        "ColumnPurpose": "Feature",
+        "ColumnDataFormat": "Single",
+        "IsCategorical": false,
+        "Type": "Column",
+        "Version": 4
+      },
+      {
+        "ColumnName": "slot3",
+        "ColumnPurpose": "Feature",
+        "ColumnDataFormat": "Single",
+        "IsCategorical": false,
+        "Type": "Column",
+        "Version": 4
+      },
+      {
+        "ColumnName": "slot4",
+        "ColumnPurpose": "Feature",
+        "ColumnDataFormat": "Single",
+        "IsCategorical": false,
+        "Type": "Column",
+        "Version": 4
+      },
+      {
+        "ColumnName": "slot5",
+        "ColumnPurpose": "Feature",
+        "ColumnDataFormat": "Single",
+        "IsCategorical": false,
+        "Type": "Column",
+        "Version": 4
+      },
+      {
+        "ColumnName": "slot6",
+        "ColumnPurpose": "Feature",
+        "ColumnDataFormat": "Single",
+        "IsCategorical": false,
+        "Type": "Column",
+        "Version": 4
+      },
+      {
+        "ColumnName": "haswinner",
+        "ColumnPurpose": "Label",
+        "ColumnDataFormat": "Boolean",
+        "IsCategorical": true,
+        "Type": "Column",
+        "Version": 4
+      }
+    ]
+  },
+  "Environment": {
+    "Type": "LocalCPU",
+    "Version": 1
+  },
+  "RunHistory": {
+    "Version": 3,
+    "Type": "Result",
+    "Trials": [
+      {
+        "Version": 1,
+        "Type": "Trial",
+        "TrainerName": "FastTreeBinary",
+        "Score": 0.67866157729483467,
+        "RuntimeInSeconds": 1.416,
+        "Parameter": {
+          "_SCHEMA_": "e0 * e1 * e2",
+          "e0": {
+            "OutputColumnNames": [
+              "slot1",
+              "slot2",
+              "slot3",
+              "slot4",
+              "slot5",
+              "slot6"
+            ],
+            "InputColumnNames": [
+              "slot1",
+              "slot2",
+              "slot3",
+              "slot4",
+              "slot5",
+              "slot6"
+            ]
+          },
+          "e1": {
+            "InputColumnNames": [
+              "slot1",
+              "slot2",
+              "slot3",
+              "slot4",
+              "slot5",
+              "slot6"
+            ],
+            "OutputColumnName": "Features"
+          },
+          "e2": {
+            "NumberOfLeaves": 2423,
+            "MinimumExampleCountPerLeaf": 113,
+            "NumberOfTrees": 2872,
+            "MaximumBinCountPerFeature": 171,
+            "FeatureFraction": 0.022050519679708697,
+            "LearningRate": 0.015505984572755486,
+            "LabelColumnName": "haswinner",
+            "FeatureColumnName": "Features",
+            "DiskTranspose": false
+          },
+          "e3": {
+            "NumberOfTrees": 2483,
+            "NumberOfLeaves": 1068,
+            "FeatureFraction": 0.987813652,
+            "LabelColumnName": "haswinner",
+            "FeatureColumnName": "Features"
+          },
+          "e4": {
+            "LabelColumnName": "haswinner",
+            "ScoreColumnName": "Score"
+          }
+        }
+      },
+      {
+        "Version": 1,
+        "Type": "Trial",
+        "TrainerName": "FastTreeBinary",
+        "Score": 0.67758419011266391,
+        "RuntimeInSeconds": 2.372,
+        "Parameter": {
+          "_SCHEMA_": "e0 * e1 * e2",
+          "e0": {
+            "OutputColumnNames": [
+              "slot1",
+              "slot2",
+              "slot3",
+              "slot4",
+              "slot5",
+              "slot6"
+            ],
+            "InputColumnNames": [
+              "slot1",
+              "slot2",
+              "slot3",
+              "slot4",
+              "slot5",
+              "slot6"
+            ]
+          },
+          "e1": {
+            "InputColumnNames": [
+              "slot1",
+              "slot2",
+              "slot3",
+              "slot4",
+              "slot5",
+              "slot6"
+            ],
+            "OutputColumnName": "Features"
+          },
+          "e2": {
+            "NumberOfLeaves": 2419,
+            "MinimumExampleCountPerLeaf": 3,
+            "NumberOfTrees": 728,
+            "MaximumBinCountPerFeature": 248,
+            "FeatureFraction": 0.18971049065595827,
+            "LearningRate": 2.0380609689597157E-08,
+            "LabelColumnName": "haswinner",
+            "FeatureColumnName": "Features",
+            "DiskTranspose": false
+          },
+          "e3": {
+            "NumberOfTrees": 227,
+            "NumberOfLeaves": 273,
+            "FeatureFraction": 0.53075695,
+            "LabelColumnName": "haswinner",
+            "FeatureColumnName": "Features"
+          },
+          "e4": {
+            "LabelColumnName": "haswinner",
+            "ScoreColumnName": "Score"
+          }
+        }
+      },
+      {
+        "Version": 1,
+        "Type": "Trial",
+        "TrainerName": "FastTreeBinary",
+        "Score": 0.67739949516714892,
+        "RuntimeInSeconds": 2.086,
+        "Parameter": {
+          "_SCHEMA_": "e0 * e1 * e2",
+          "e0": {
+            "OutputColumnNames": [
+              "slot1",
+              "slot2",
+              "slot3",
+              "slot4",
+              "slot5",
+              "slot6"
+            ],
+            "InputColumnNames": [
+              "slot1",
+              "slot2",
+              "slot3",
+              "slot4",
+              "slot5",
+              "slot6"
+            ]
+          },
+          "e1": {
+            "InputColumnNames": [
+              "slot1",
+              "slot2",
+              "slot3",
+              "slot4",
+              "slot5",
+              "slot6"
+            ],
+            "OutputColumnName": "Features"
+          },
+          "e2": {
+            "NumberOfLeaves": 763,
+            "MinimumExampleCountPerLeaf": 3,
+            "NumberOfTrees": 728,
+            "MaximumBinCountPerFeature": 250,
+            "FeatureFraction": 0.18971049065595827,
+            "LearningRate": 2.2147731974846249E-07,
+            "LabelColumnName": "haswinner",
+            "FeatureColumnName": "Features",
+            "DiskTranspose": false
+          },
+          "e3": {
+            "NumberOfTrees": 227,
+            "NumberOfLeaves": 273,
+            "FeatureFraction": 0.3960631,
+            "LabelColumnName": "haswinner",
+            "FeatureColumnName": "Features"
+          },
+          "e4": {
+            "LabelColumnName": "haswinner",
+            "ScoreColumnName": "Score"
+          }
+        }
+      },
+      {
+        "Version": 1,
+        "Type": "Trial",
+        "TrainerName": "FastTreeBinary",
+        "Score": 0.67622976051222061,
+        "RuntimeInSeconds": 1.224,
+        "Parameter": {
+          "_SCHEMA_": "e0 * e1 * e2",
+          "e0": {
+            "OutputColumnNames": [
+              "slot1",
+              "slot2",
+              "slot3",
+              "slot4",
+              "slot5",
+              "slot6"
+            ],
+            "InputColumnNames": [
+              "slot1",
+              "slot2",
+              "slot3",
+              "slot4",
+              "slot5",
+              "slot6"
+            ]
+          },
+          "e1": {
+            "InputColumnNames": [
+              "slot1",
+              "slot2",
+              "slot3",
+              "slot4",
+              "slot5",
+              "slot6"
+            ],
+            "OutputColumnName": "Features"
+          },
+          "e2": {
+            "NumberOfLeaves": 91,
+            "MinimumExampleCountPerLeaf": 60,
+            "NumberOfTrees": 544,
+            "MaximumBinCountPerFeature": 11,
+            "FeatureFraction": 0.099047791439110328,
+            "LearningRate": 0.02645554861387691,
+            "LabelColumnName": "haswinner",
+            "FeatureColumnName": "Features",
+            "DiskTranspose": false
+          },
+          "e3": {
+            "NumberOfTrees": 740,
+            "NumberOfLeaves": 12702,
+            "FeatureFraction": 0.5501541,
+            "LabelColumnName": "haswinner",
+            "FeatureColumnName": "Features"
+          },
+          "e4": {
+            "LabelColumnName": "haswinner",
+            "ScoreColumnName": "Score"
+          }
+        }
+      },
+      {
+        "Version": 1,
+        "Type": "Trial",
+        "TrainerName": "FastTreeBinary",
+        "Score": 0.674998460875454,
+        "RuntimeInSeconds": 33.71,
+        "Parameter": {
+          "_SCHEMA_": "e0 * e1 * e2",
+          "e0": {
+            "OutputColumnNames": [
+              "slot1",
+              "slot2",
+              "slot3",
+              "slot4",
+              "slot5",
+              "slot6"
+            ],
+            "InputColumnNames": [
+              "slot1",
+              "slot2",
+              "slot3",
+              "slot4",
+              "slot5",
+              "slot6"
+            ]
+          },
+          "e1": {
+            "InputColumnNames": [
+              "slot1",
+              "slot2",
+              "slot3",
+              "slot4",
+              "slot5",
+              "slot6"
+            ],
+            "OutputColumnName": "Features"
+          },
+          "e2": {
+            "NumberOfLeaves": 106,
+            "MinimumExampleCountPerLeaf": 11,
+            "NumberOfTrees": 23378,
+            "MaximumBinCountPerFeature": 146,
+            "FeatureFraction": 0.43877696417263728,
+            "LearningRate": 9.1926401990649078E-06,
+            "LabelColumnName": "haswinner",
+            "FeatureColumnName": "Features",
+            "DiskTranspose": false
+          },
+          "e3": {
+            "NumberOfTrees": 18,
+            "NumberOfLeaves": 276,
+            "FeatureFraction": 0.8913633,
+            "LabelColumnName": "haswinner",
+            "FeatureColumnName": "Features"
+          },
+          "e4": {
+            "LabelColumnName": "haswinner",
+            "ScoreColumnName": "Score"
+          }
+        }
+      }
+    ],
+    "Estimators": {
+      "e0": "ReplaceMissingValues",
+      "e1": "Concatenate",
+      "e2": "FastTreeBinary",
+      "e3": "FastForestBinary",
+      "e4": "Naive"
+    },
+    "Schema": "e0 * e1 * (e2 + e3 * e4)",
+    "MetricName": "AUC",
+    "ModelFilePath": "G:\\projects\\loabletech\\LottoML.net\\Classification_645_ConsoleApp1\\classification-645.mlnet"
+  },
+  "Type": "TrainingConfig",
+  "Version": 4,
+  "TrainingOption": {
+    "Version": 2,
+    "Subsampling": false,
+    "Tuner": "smac",
+    "Type": "ClassificationTrainingOption",
+    "TrainingTime": 500,
+    "OptimizeMetric": "AUC",
+    "LabelColumn": "haswinner",
+    "AvailableTrainers": [
+      "FASTTREE",
+      "FASTFOREST"
+    ],
+    "Seed": 0,
+    "ValidationOption": {
+      "Version": 0,
+      "Type": "TrainValidateSplitValidationOption",
+      "SplitRatio": 0.3
+    }
+  }
+}

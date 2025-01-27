@@ -1,14 +1,23 @@
 ﻿using LottoML_net6;
 
-var slot1 = _655_slot1.Predict();
-var slot2 = _655_slot2.Predict();
-var slot3 = _655_slot3.Predict();
-var slot4 = _655_slot4.Predict();
-var slot5 = _655_slot5.Predict();
-var slot6 = _655_slot6.Predict();
-
-for(var i=0; i<5; i++)
+//Load sample data
+var sampleData = new _655_slot1.ModelInput()
 {
-    var combination = $"{Math.Floor(slot1.Sorted1[i])}-{Math.Floor(slot2.Sorted2[i])}-{Math.Floor(slot3.Sorted3[i])}-{Math.Floor(slot4.Sorted4[i])}-{Math.Floor(slot5.Sorted5[i])}-{Math.Floor(slot6.Sorted6[i])}";
-    Console.WriteLine(combination);
-}
+    Date = @"8/31/2022",
+    Results = @"15-12-16-17-03-09",
+    Slot_1 = 3F,
+    Slot_2 = 9F,
+    Slot_3 = 12F,
+    Slot_4 = 15F,
+    Slot_5 = 16F,
+    Slot_6 = 17F,
+    Sorted2 = 9F,
+    Sorted3 = 12F,
+    Sorted4 = 15F,
+    Sorted5 = 16F,
+    Sorted6 = 17F,
+};
+
+//Load model and predict output
+var result = _655_slot1.Predict(sampleData);
+Console.WriteLine(result.Score);

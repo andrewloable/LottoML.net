@@ -3,7 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.3.32819.101
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LottoML.net6", "LottoML.net6.csproj", "{C8977F5A-AB51-4420-8369-B09454023684}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LottoML.net6", "LottoML.net6.csproj", "{C8977F5A-AB51-4420-8369-B09454023684}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Classification_645_ConsoleApp1", "..\Classification_645_ConsoleApp1\Classification_645_ConsoleApp1.csproj", "{956C41AC-FB3F-48E5-AC7D-2024C76D1DB8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "lotto649", "..\lotto649\lotto649.csproj", "{823A5B18-8C04-4CEC-A919-9C5B13570854}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +19,14 @@ Global
 		{C8977F5A-AB51-4420-8369-B09454023684}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C8977F5A-AB51-4420-8369-B09454023684}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C8977F5A-AB51-4420-8369-B09454023684}.Release|Any CPU.Build.0 = Release|Any CPU
+		{956C41AC-FB3F-48E5-AC7D-2024C76D1DB8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{956C41AC-FB3F-48E5-AC7D-2024C76D1DB8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{956C41AC-FB3F-48E5-AC7D-2024C76D1DB8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{956C41AC-FB3F-48E5-AC7D-2024C76D1DB8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{823A5B18-8C04-4CEC-A919-9C5B13570854}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{823A5B18-8C04-4CEC-A919-9C5B13570854}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{823A5B18-8C04-4CEC-A919-9C5B13570854}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{823A5B18-8C04-4CEC-A919-9C5B13570854}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

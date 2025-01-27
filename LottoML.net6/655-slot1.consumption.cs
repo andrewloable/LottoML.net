@@ -18,8 +18,9 @@ namespace LottoML_net6
         #region model input class
         public class ModelInput
         {
-            [ColumnName(@"sorted1")]
-            public float Sorted1 { get; set; }
+            [LoadColumn(0)]
+            [ColumnName(@"result")]
+            public float Result { get; set; }
 
         }
 
@@ -31,14 +32,14 @@ namespace LottoML_net6
         #region model output class
         public class ModelOutput
         {
-            [ColumnName(@"sorted1")]
-            public float[] Sorted1 { get; set; }
+            [ColumnName(@"result")]
+            public float[] Result { get; set; }
 
-            [ColumnName(@"sorted1_LB")]
-            public float[] Sorted1_LB { get; set; }
+            [ColumnName(@"result_LB")]
+            public float[] Result_LB { get; set; }
 
-            [ColumnName(@"sorted1_UB")]
-            public float[] Sorted1_UB { get; set; }
+            [ColumnName(@"result_UB")]
+            public float[] Result_UB { get; set; }
 
         }
 
